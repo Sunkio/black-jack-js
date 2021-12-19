@@ -8,22 +8,22 @@ body {
 }
 
 h1 {
-    color: goldenrod;
+    color: #f5bb00;
 }
 
-#greeting-el{
+.messageText{
 	font-style: italic;
 }
 
-#message-el {
-    font-style: italic;
+.blocks {
+	display: inline-block;
 }
 
 button {
-    color: #016f32;
-    width: 150px;
-    background: goldenrod;
-    padding-top: 5px;
+    color: #034F08;
+    width: 130px;
+    background: #f5bb00;
+    padding-top: 7px;
     padding-bottom: 5px;
     font-weight: bold;
     border: none;

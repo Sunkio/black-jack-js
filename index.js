@@ -7,15 +7,67 @@ let messageEl = document.getElementById("message-el")
 let sumEl = document.getElementById("sum-el")
 let cardsEl = document.getElementById("cards-el")
 let playerEl = document.getElementById("player-el")
-let person = "default"
+var person = "Player"
+let player = ""
+// let rules = ""
+let rulesEl = document.getElementById("rules-el")
 
-
-let player = {
-    name: person,
-    chips: 200
+function displayGreeting(){
+	if (person != "" && person != "Player") {
+		document.getElementById("greeting-el").innerHTML =
+		"Hello " + person + "! Pleasure to have you!";
+	}
+	else {
+		document.getElementById("greeting-el").innerHTML =
+		"Pleasure to have you!";
+	}
+	document.getElementById("rules-el").innerHTML =
+	"The stake is a minimum $20 per round. You'll double your stake if you win.";
 }
 
-playerEl.textContent = player.name + ": $" + player.chips
+function showPlayerBudget() {
+	player = {name: person, chips: 200}
+	playerEl.textContent = player.name + ": $" + player.chips
+}
+
+function hideInputField() 
+{
+	var div = document.getElementById("hide");  
+	if (div.style.display !== "none") {  
+		div.style.display = "none";  
+	}  
+	else {  
+		div.style.display = "block";  
+	}  
+} 
+
+function showStakesField() 
+{
+	document.getElementById("stakes-div").style.display = "block";
+} 
+
+function hideStakesField() 
+{
+	var div = document.getElementById("stakes-div");  
+	if (div.style.display !== "none") {  
+		div.style.display = "none";  
+	}  
+	else {  
+		div.style.display = "block";  
+	}  
+} 
+
+function getName() {
+	person = document.getElementById("name").value;
+	if (person === "")
+	{
+		person = "Player"
+	}
+	displayGreeting();
+	showPlayerBudget(); 
+	hideInputField();
+	showStakesField() 
+}
 
 function getRandomCard() {
     let randomNumber = Math.floor( Math.random()*13 ) + 1
@@ -34,6 +86,9 @@ function startGame() {
     let secondCard = getRandomCard()
     cards = [firstCard, secondCard]
     sum = firstCard + secondCard
+	document.getElementById("greeting-el").innerHTML =
+	"Good luck, " + person + "!";
+	hideStakesField();
     renderGame()
 }
 
@@ -45,12 +100,12 @@ function renderGame() {
     
     sumEl.textContent = "Sum: " + sum
     if (sum <= 20) {
-        message = "Do you want to draw a new card?"
+        message = "You're on fire! 🔥 Do you want to draw a new card?"
     } else if (sum === 21) {
-        message = "You've got Blackjack!"
+        message = "You've got Blackjack! Congratulations! 🎉"
         hasBlackJack = true
     } else {
-        message = "You're out of the game!"
+        message = "Oh no, that's too much - you're out of the game! 😧"
         isAlive = false
     }
     messageEl.textContent = message
@@ -64,11 +119,4 @@ function newCard() {
         cards.push(card)
         renderGame()        
     }
-}
-
-person = prompt("Please enter your name", "Spike Spiegel");
-
-if (person != null) {
-  document.getElementById("greeting-el").innerHTML =
-  "Hello " + person + "! Pleasure to have you!";
 }

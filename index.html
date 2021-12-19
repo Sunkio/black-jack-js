@@ -25,11 +25,19 @@
 	</head>
 	<body>
 		<h1>Blackjack</h1>
-		<p id="greeting-el">Hey there!</p>
-		<p id="message-el">Want to play a round?</p>
+		<p id="greeting-el">Hello there, I'm Jack. What's your name?</p>
+		<div id="hide">
+			<input id="name" type="text" placeholder="Your Name">
+			<button onclick="getName()">LET'S GO!</button>
+		</div>
+		<p id="message-el" class="messageText">Want to play a round?</p>
+		<p id="rules-el" class="messageText">It's gonna be fun! 🙂</p>
 		<p id="cards-el">Cards:</p>
         <p id="sum-el">Sum:</p>
-        <button onclick="startGame()">START GAME</button>
+		<div id="stakes-div" class="blocks" style="display:none;">
+			<input id="stakes" type="text" placeholder="Enter Your Stake" class="blocks">
+		</div>
+		<button onclick="startGame()">START GAME</button>
         <button onclick="newCard()">NEW CARD</button>
         <p id="player-el"></p>
         <script src="index.js"></script>
